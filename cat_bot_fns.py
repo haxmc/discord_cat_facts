@@ -1,3 +1,6 @@
+import discord # discord.py
+import requests # to pull information with APIs
+
 # Utility functions for bot
 def cat_fact_grabber():
     # API for grabbing a fantastic fact about our favorite felines
