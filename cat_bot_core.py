@@ -20,12 +20,14 @@
 import discord # discord.py
 import requests # to pull information with APIs
 import os # Python standard library, for working with the OS file system
-import cat_bot_fns as cbfns
+import datetime # Python standard library, for extended logging of bot status
+import time # Python standard library, for extended logging of bot status
+import cat_bot_fns as cbfns # importing custom module with helper functions, for code readability
 
 # global variables and constants
 client = discord.Client() # object instance of class Client
 # discord Bot User Token (https://discordapp.com/developers, under 'My Apps')
-TOKEN = 'NDYzNjkyNzMyNTQwNTE4NDIy.Dh0Heg.jiZpkwwVCjliBhPRXedrxpIWgQU'
+TOKEN = 'NDY3MDk2NzIyMDk1NjAzNzQ0.DilpSA.VcYi6POFeZWmW9_OJMfR_8V96yk' # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
 #whoever you want as your POC for bot related inquiries - must use the string of numbers that are the user ID, usernames will not work here
 DEV_ID = '423984093932421120'
 
@@ -94,11 +96,13 @@ async def on_message(message):
 
         await client.send_message(message.channel, "Your comment has been logged, thank you!")
 
-@client.event # decorator, triggered on ready, creates logs so that the bot admin can review if anything goes wrong
+@client.event # decorator, triggered on ready
 async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    logfile = open('cfb_logfile.txt', 'a')
+    ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+    logentry = str(ts) + '  ' + 'Logged in to Discord as ' + client.user.name + ' with client ' + client.user.id + '\n'
+    print(logentry)
+    logfile.write(logentry)
+    logfile.close()
 
 client.run(TOKEN)
