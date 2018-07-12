@@ -15,7 +15,7 @@
 - To add this bot to your discord server, go to `https://discordapp.com/api/oauth2/authorize?client_id=463692732540518422&scope=bot` and add it to whichever server you want!
 ### Commands
 - `c!help` or `c!helpplz` - call for help!
-- `c!factplz <option>` - get a random fact! {<options> below}
+- `c!factplz <option>` - get a random fact! {options below}
     - `j` - deliver an image along with your cat!
     - `g` - deliver a GIF along with your fact!
 - `c!devhelp` - (OPTIONAL IMPLEMENTATION) - DM's whoever you set to allow users to submit comments and their username, so that the bot dev can follow up.
