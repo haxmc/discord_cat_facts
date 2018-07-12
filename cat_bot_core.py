@@ -18,55 +18,16 @@
 
 # importing Python modules
 import discord # discord.py
-import requests # to pull information with API
+import requests # to pull information with APIs
 import os # Python standard library, for working with the OS file system
+import cat_bot_fns as cbfns
 
 # global variables and constants
 client = discord.Client() # object instance of class Client
 # discord Bot User Token (https://discordapp.com/developers, under 'My Apps')
-TOKEN = BOT_USER_TOKEN
-#whoever you want as your POC for bot related inquiries
-DEV_ID = USER_ID_OF_DEVELOPER
-
-# Utility functions for bot
-def cat_fact_grabber():
-    # API for grabbing a fantastic fact about our favorite felines
-    cat_fact_resp = requests.get('https://catfact.ninja/fact')
-
-    resp_data = cat_fact_resp.json() # represents the server response as a JSON object
-
-    return resp_data["fact"] # pulls the string key from the value "fact"
-
-def cat_jpg_grabber():
-    # API for featuring a fabulous photo full of frisky fellows
-    cat_jpg_resp = requests.get('http://thecatapi.com/api/images/get?type=jpg&size=small&format=src', stream=True) 
-    # reads the data as a stream becaise it is a large binary file
-    filename = "cat_picture.jpg"
-
-    if cat_jpg_resp.status_code == 200:
-        # assuming everything goes well
-        with open(filename, 'wb') as f: 
-            # creating new file on system, writing binary data to it
-            for chunk in cat_jpg_resp.iter_content(1024): # arg, size in bytes
-                # streaming binary photo data to the new file
-                f.write(chunk)
-
-    return filename
-
-def cat_gif_grabber():
-    # API for featuring a fabulous photo full of frisky fellows
-    cat_gif_resp = requests.get('http://thecatapi.com/api/images/get?type=gif&size=small&format=src', stream=True)
-    filename = "cat_gif.gif"
-
-    if cat_gif_resp.status_code == 200:
-        # assuming everything goes well
-        with open(filename, 'wb') as f:
-            # creating new file on system, writing binary data to it
-            for chunk in cat_gif_resp.iter_content(1024):
-                # streaming binary photo data to the new file
-                f.write(chunk)
-
-    return filename
+TOKEN = ''
+#whoever you want as your POC for bot related inquiries - must use the string of numbers that are the user ID, usernames will not work here
+DEV_ID = ''
 
 # functions on client events
 @client.event # decorator, triggered on any message the bot sees - listens for particular user commands
@@ -92,8 +53,8 @@ async def on_message(message):
 
     # user command 2a - fact with JPEG
     if message.content.startswith('c!factplz j'):
-        msg = 'Fact: ' + cat_fact_grabber().format(message)
-        cat_jpg = cat_jpg_grabber()
+        msg = 'Fact: ' + cbfns.cat_fact_grabber().format(message)
+        cat_jpg = cbfns.cat_jpg_grabber()
         end_msg = 'Enjoy your day! *meow*'
 
         # sends to channel where original message was posted
@@ -106,8 +67,8 @@ async def on_message(message):
 
     # user command 2b - fact with GIF
     if message.content.startswith('c!factplz g'):
-        msg = 'Fact: ' + cat_fact_grabber().format(message)
-        cat_gif = cat_gif_grabber()
+        msg = 'Fact: ' + cbfns.cat_fact_grabber().format(message)
+        cat_gif = cbfns.cat_gif_grabber()
         end_msg = 'Enjoy your day! *meow*'
 
         # sends to channel where original message was posted
