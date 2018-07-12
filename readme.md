@@ -1,9 +1,7 @@
 # Welcome to the Cat Fact bot for Discord!
-## Made by Dallas Taylor (de-taylor on Github)
-## 2018 - GNU Open Public License
-### Built on Discord.py for delivering
-### on demand cat facts in Discord
-v0.5.0 - Released 07/11/2018
+## Made by Dallas Taylor (de-taylor) || 2018 - GNU Open Public License
+### Built on Discord.py for delivering on demand cat facts in Discord
+### v0.5.0 - Released 07/11/2018
 
 ## What it does
 - This bot does one thing, but it does it well: It fetches cat facts from the catfact.ninja API, using the /fact endpoint
