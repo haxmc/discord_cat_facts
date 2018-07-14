@@ -13,7 +13,7 @@
       #      Built on Discord.py for delivering      #
       #        on demand cat facts in Discord        #
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-      #   ~*~*~ v0.5.0 - Released 07/11/2018 ~*~*~   #
+      #   ~*~*~ v0.6.0 - Released 07/14/2018 ~*~*~   #
       ################################################
 
 # importing Python modules
@@ -22,14 +22,14 @@ import requests # to pull information with APIs
 import os # Python standard library, for working with the OS file system
 import datetime # Python standard library, for extended logging of bot status
 import time # Python standard library, for extended logging of bot status
-import cat_bot_fns as cbfns # importing custom module with helper functions, for code readability
+import library.functions.fetch as fetch # importing custom module with helper functions, for code readability
 
 # global variables and constants
 client = discord.Client() # object instance of class Client
 # discord Bot User Token (https://discordapp.com/developers, under 'My Apps')
-TOKEN = 'NDY3MDk2NzIyMDk1NjAzNzQ0.DilpSA.VcYi6POFeZWmW9_OJMfR_8V96yk' # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
+TOKEN = BOT_USER_TOKEN # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
 #whoever you want as your POC for bot related inquiries - must use the string of numbers that are the user ID, usernames will not work here
-DEV_ID = '423984093932421120'
+DEV_ID = DEV_ID_18_DIGIT_USER_ID
 
 # functions on client events
 @client.event # decorator, triggered on any message the bot sees - listens for particular user commands
@@ -55,8 +55,8 @@ async def on_message(message):
 
     # user command 2a - fact with JPEG
     if message.content.startswith('c!factplz jpg'):
-        msg = 'Fact: ' + cbfns.cat_fact_grabber().format(message)
-        cat_jpg = cbfns.cat_jpg_grabber()
+        msg = 'Fact: ' + fetch.cat_fact_grabber().format(message)
+        cat_jpg = fetch.cat_jpg_grabber()
         end_msg = 'Enjoy your day! *meow*'
 
         # sends to channel where original message was posted
@@ -69,8 +69,8 @@ async def on_message(message):
 
     # user command 2b - fact with GIF
     if message.content.startswith('c!factplz gif'):
-        msg = 'Fact: ' + cbfns.cat_fact_grabber().format(message)
-        cat_gif = cbfns.cat_gif_grabber()
+        msg = 'Fact: ' + fetch.cat_fact_grabber().format(message)
+        cat_gif = fetch.cat_gif_grabber()
         end_msg = 'Enjoy your day! *meow*'
 
         # sends to channel where original message was posted
@@ -97,12 +97,21 @@ async def on_message(message):
         await client.send_message(message.channel, "Your comment has been logged, thank you!")
 
 @client.event # decorator, triggered on ready
-async def on_ready():
-    logfile = open('cfb_logfile.txt', 'a')
-    ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    logentry = str(ts) + '  ' + 'Logged in to Discord as ' + client.user.name + ' with client ' + client.user.id + '\n'
-    print(logentry)
-    logfile.write(logentry)
+async def on_ready(): # need to log different things on on_ready() error
+    # open existing logfile for updates, need to check if file exists, and if not, create it with CSV formatting, later
+    logfile = open('bin/logfiles/bot_logfile.csv', 'a') # need to log different things on file open error
+    ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') # need to log different things on time error
+    status_note = 'Logged in to Discord as ' + client.user.name + ' with client ' + client.user.id
+    error_msg = 'None'
+
+    # two different formats, could create functions for this
+    logentry_print = str(ts) + '  ' + status_note + '\n'
+    logentry_log = str(ts) + ',' + status_note + ',' + error_msg + '\n'
+
+    # log status to two different errors
+    print(logentry_print)
+    logfile.write(logentry_log)
+
     logfile.close()
 
 client.run(TOKEN)
