@@ -24,6 +24,6 @@
 
 - `c!help` or `c!helpplz` - call for help!
 - `c!factplz <option>` - get a random fact! {options below}
-- `jpg` - deliver an image along with your cat!
-- `gif` - deliver a GIF along with your fact!
+  - `jpg` - deliver an image along with your cat!
+  - `gif` - deliver a GIF along with your fact!
 - `c!devhelp` - DM's the dev (you set the user ID in cat_bot_core.py in the constant `DEV_ID`). Also stores the time, user ID, user comment in a CSV file that can be accessed through any spreadsheet program.

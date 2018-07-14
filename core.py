@@ -27,9 +27,9 @@ import library.functions.fetch as fetch # importing custom module with helper fu
 # global variables and constants
 client = discord.Client() # object instance of class Client
 # discord Bot User Token (https://discordapp.com/developers, under 'My Apps')
-TOKEN = BOT_USER_TOKEN # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
+TOKEN = 'NDY3MDk2NzIyMDk1NjAzNzQ0.DilpSA.VcYi6POFeZWmW9_OJMfR_8V96yk' # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
 #whoever you want as your POC for bot related inquiries - must use the string of numbers that are the user ID, usernames will not work here
-DEV_ID = DEV_ID_18_DIGIT_USER_ID
+DEV_ID = '423984093932421120'
 
 # functions on client events
 @client.event # decorator, triggered on any message the bot sees - listens for particular user commands
@@ -85,6 +85,14 @@ async def on_message(message):
     if message.content.startswith('c!devhelp'):
         message_author_name = str(message.author)
         message_author_comment = message.content.lstrip('c!devhelp')
+
+        ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') # timestamp of comment
+
+        commentlog = open('bin/logfiles/bot_comments.csv', 'a') # open log file for writing
+
+        commentlog.write(str(ts) + ',' + message_author_name + ',' + message_author_comment + '\n') # make entry in CSV log
+
+        commentlog.close()
 
         help_msg = 'Hi! ' + message_author_name + ' has issued a comment on my performance, seen below:\n\n'
         help_msg = help_msg + '\t\t`' + message_author_comment + '`\n\n'
