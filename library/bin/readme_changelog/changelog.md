@@ -8,9 +8,8 @@
 
 ### Tweaks
 
-- Improved user comment logging, expands on original logging interface by storing user comments in a CSV file for the bot dev to look over, as well as sending a DM to the dev with each comment.
-- Improved bot status logging, creates more entries for more events, included calls to the bot (what the call, and the status code), comments logged, and if the bot is taken down manually, or not.
-- Added developer functionality to take bot down manually, so that the dev can tell whether the bot/server crashed or not.
+- Improved user comment logging, expands on original logging interface by storing user comments in a log file for the bot dev to look over, as well as sending a DM to the dev with each comment.
+- Improved bot status logging, creates more entries for more events, included calls to the bot (what the call, and the status code), comments logged, etc.
 - Updated bot file structure to accomodate more complex bot operations
 
 ## Version 0.5.0 - Initial Alpha Release of Cat Facts bot for Discord - 7/11/2018

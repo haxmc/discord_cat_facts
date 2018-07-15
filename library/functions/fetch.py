@@ -8,7 +8,7 @@ def cat_fact_grabber():
 
     resp_data = cat_fact_resp.json() # represents the server response as a JSON object
 
-    return resp_data["fact"] # pulls the string key from the value "fact"
+    return resp_data["fact"], cat_fact_resp.status_code # pulls the string key from the value "fact"
 
 def cat_jpg_grabber():
     # API for featuring a fabulous photo full of frisky fellows
@@ -24,7 +24,7 @@ def cat_jpg_grabber():
                 # streaming binary photo data to the new file
                 f.write(chunk)
 
-    return filename
+    return filename, cat_jpg_resp.status_code
 
 def cat_gif_grabber():
     # API for featuring a fabulous photo full of frisky fellows
@@ -39,4 +39,4 @@ def cat_gif_grabber():
                 # streaming binary photo data to the new file
                 f.write(chunk)
 
-    return filename
+    return filename, cat_gif_resp.status_code
