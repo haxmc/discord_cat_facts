@@ -1,5 +1,2 @@
 # ignore __pycache__ folders
 __pycache__
-
-# ignore .env secret file
-secret.json
