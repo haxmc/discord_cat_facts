@@ -1,10 +1,6 @@
 # Changelog for Cat Facts Bot for Discord (newest on top)
 
-## Version 0.6.0 - First major update to Alpha version - 7/14/2018
-
-### New Features
-
-- User requested automatic timer for dispensing cat facts, every 3 hours from 6 AM to 9 PM CST, and once at 12 AM. Might change the timing if need be. This feature can be turned on/off with commands `c!timer on` and `c!timer off`, respectively.
+## Version 0.6.0 - First major update to Alpha version - 7/15/2018
 
 ### Tweaks
 
