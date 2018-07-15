@@ -27,9 +27,9 @@ import library.functions.fetch as fetch # importing custom module that has the A
 # global variables and constants
 client = discord.Client() # object instance of class Client
 # discord Bot User Token (https://discordapp.com/developers, under 'My Apps')
-TOKEN = 'NDY3MDk2NzIyMDk1NjAzNzQ0.DilpSA.VcYi6POFeZWmW9_OJMfR_8V96yk' # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
+TOKEN = '' # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
 #whoever you want as your POC for bot related inquiries - must use the string of numbers that are the user ID, usernames will not work here
-DEV_ID = '423984093932421120'
+DEV_ID = ''
 dev_user = discord.utils.get(client.get_all_members(),id=DEV_ID)
 
 # functions on client events

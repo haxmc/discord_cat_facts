@@ -1,8 +1,5 @@
 # ignore __pycache__ folders
 __pycache__
 
-# ignore logfiles, but include folder itself
-library/bin/logfiles/*.log
-
 # ignore .env secret file
 .env
