@@ -17,8 +17,8 @@
       ################################################
 
 # importing Python modules
-import discord # discord.py
-import requests # to pull information with APIs
+import discord # discord.py, to communicate with Discord
+import requests # requests.py to pull information with APIs
 import os # Python standard library, for working with the OS file system
 import datetime # Python standard library, for extended logging of bot status
 import time # Python standard library, for extended logging of bot status
@@ -27,10 +27,10 @@ import library.functions.fetch as fetch # importing custom module that has the A
 # global variables and constants
 client = discord.Client() # object instance of class Client
 # discord Bot User Token (https://discordapp.com/developers, under 'My Apps')
-TOKEN = '' # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
+TOKEN = BOT_USER_TOKEN # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
+
 #whoever you want as your POC for bot related inquiries - must use the string of numbers that are the user ID, usernames will not work here
-DEV_ID = ''
-dev_user = discord.utils.get(client.get_all_members(),id=DEV_ID)
+DEV_ID = DISCORD_USER_ID # as string, 16 characters long, typically
 
 # functions on client events
 @client.event # decorator, triggered on any message the bot sees - listens for particular user commands
@@ -54,7 +54,7 @@ async def on_message(message):
         msg = msg + '\t\t `gif`: gives a .gif of a kitty\n\n'
         msg = msg + '3] `c!devhelp <your comment>`: gets the attention of the dev who moderates me! I\'ll send them your username and comment, and they\'ll DM you when they can! *Don\'t worry, I never store user information without permission!*'
 
-        logentry = str(ts) + '  User asked for help, received all commands for cat bot.\n'
+        logentry = str(ts) + ' :: User asked for help, received all commands for cat bot.\n'
 
         eventlog.write(logentry)
 
@@ -78,7 +78,7 @@ async def on_message(message):
         # sends to channel where original message was posted
         await client.send_message(message.channel, end_msg)
 
-        logentry = str(ts) + '  Call: Fact and JPEG fetch. Fact API call status: ' + str(fact_status) + '; Image API call status: ' + str(jpg_status) + '\n'
+        logentry = str(ts) + ' :: Call: Fact and JPEG fetch. Fact API call status: ' + str(fact_status) + '; Image API call status: ' + str(jpg_status) + '\n'
 
         eventlog.write(logentry)
         print(logentry)
@@ -100,7 +100,7 @@ async def on_message(message):
         # sends to channel where original message was posted
         await client.send_message(message.channel, end_msg)
 
-        logentry = str(ts) + '  Call: Fact and GIF fetch. Fact API call status: ' + str(fact_status) + '; GIF API call status: ' + str(gif_status)+ '\n'
+        logentry = str(ts) + ' :: Call: Fact and GIF fetch. Fact API call status: ' + str(fact_status) + '; GIF API call status: ' + str(gif_status)+ '\n'
 
         eventlog.write(logentry)
         print(logentry)
@@ -111,8 +111,12 @@ async def on_message(message):
 
     # user command 3 - let dev know something is wrong
     if message.content.startswith('c!devhelp'):
+        message_server = message.server.name
+        message_channel = message.channel.name
         message_author_name = str(message.author)
         message_author_comment = message.content.lstrip('c!devhelp')
+
+        dev_user = discord.utils.get(client.get_all_members(),id=DEV_ID)
 
         commentlog = open('library/bin/logfiles/bot_comments.log', 'a') # open comment log file for writing
 
@@ -122,9 +126,9 @@ async def on_message(message):
 
         await client.send_message(dev_user, help_msg)
 
-        commentlog.write(str(ts) + ' Comment: ' + message_author_comment + '\n') # make entry in log
+        commentlog.write(str(ts) + ' :: Server: ' + message_server + '; Channel: ' + message_channel + '; ' + ' Comment: ' + message_author_comment + '\n') # make entry in log
 
-        logentry = str(ts) + '  Comment logged from user, please check bot_comment logs' + '\n'
+        logentry = str(ts) + ' :: Comment logged from user on '+ message_server + ':' + message_channel + ', please check bot_comment logs' + '\n'
 
         eventlog.write(logentry) # make entry in log
         print(logentry)
@@ -142,7 +146,7 @@ async def on_ready(): # need to log different things on on_ready() error
     status_note = 'Logged in to Discord as ' + client.user.name + ' with client ' + client.user.id
     error_msg = 'None'
 
-    logentry = str(ts) + '  ' + status_note + '  ' + error_msg + '\n'
+    logentry = str(ts) + ' :: ' + status_note + ' :: ' + error_msg + '\n'
 
     # log status to two different places
     print(logentry)
