@@ -9,20 +9,20 @@
 
       ################################################
       #          Made by de-taylor (Github)          #
-      #             2018 - MIT License               #
       #      Built on Discord.py for delivering      #
       #        on demand cat facts in Discord        #
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-      #   ~*~*~ v0.6.0 - Released 7/15/2018 ~*~*~    #
+      #   ~*~*~ v0.6.5 - Released 7/21/2018 ~*~*~    #
       ################################################
 
 # importing Python modules
 import discord # discord.py, to communicate with Discord
 import requests # requests.py to pull information with APIs
+
 import os # Python standard library, for working with the OS file system
 import datetime # Python standard library, for extended logging of bot status
 import time # Python standard library, for extended logging of bot status
-import random # Python standard library, for calling either GIF or JPEG
+
 import library.functions.fetch as fetch # importing custom module that has the API call functionality
 import library.functions.utilities as utilities # importing custom module that has utility functions
 
@@ -50,7 +50,17 @@ async def on_message(message):
         # sends to channel where original message was posted
         await client.send_message(message.channel, msg)
 
-    # user command 2a - fact with JPEG
+    # user command 2 - breed information
+    if message.content.startswith('c!breedplz'):
+        breed_msg, end_msg = utilities.breed_info_fetch(ts, message) # expects a formatted string with the breed information
+
+        # sends to channel where original message was posted
+        await client.send_message(message.channel, breed_msg)
+
+        await client.send_message(message.channel, end_msg)
+
+
+    # user command 3a - fact with JPEG
     if message.content.startswith('c!factplz jpg'):
         msg, cat_jpg, end_msg = utilities.fact_jpg_fetch(ts, message)
 
@@ -62,9 +72,7 @@ async def on_message(message):
 
         os.remove(cat_jpg) # removes file once it's posted, for keeping server hard drive clear
 
-        
-
-    # user command 2b - fact with GIF
+    # user command 3b - fact with GIF
     if message.content.startswith('c!factplz gif'):
         msg, cat_gif, end_msg = utilities.fact_gif_fetch(ts, message)
 
@@ -76,7 +84,7 @@ async def on_message(message):
 
         os.remove(cat_gif) # removes file once it's posted, for keeping server hard drive clear
 
-    # user command 3 - let dev know something is wrong
+    # user command 4 - let dev know something is wrong
     if message.content.startswith('c!devhelp'):
         dev_user = discord.utils.get(client.get_all_members(),id=DEV_ID)
         

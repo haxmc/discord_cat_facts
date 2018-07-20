@@ -1,6 +1,8 @@
 import discord # discord.py
 import requests # to pull information with APIs
 
+import random
+
 # Utility functions for bot
 def cat_fact_grabber():
     # API for grabbing a fantastic fact about our favorite felines
@@ -9,6 +11,17 @@ def cat_fact_grabber():
     resp_data = cat_fact_resp.json() # represents the server response as a JSON object
 
     return resp_data["fact"], cat_fact_resp.status_code # pulls the string key from the value "fact"
+
+def cat_breed_grabber():
+    # API for grabbing an array of information about a particular cat breed
+
+    cat_breed_resp = requests.get('https://catfact.ninja/breeds')
+    
+    resp_data = cat_breed_resp.json()
+
+    breed_num = random.randint(0, len(resp_data))
+
+    return resp_data["data"][breed_num], cat_breed_resp.status_code # returns a dictionary with the breed information, and the status code
 
 def cat_jpg_grabber():
     # API for featuring a fabulous photo full of frisky fellows
