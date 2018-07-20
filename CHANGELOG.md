@@ -1,5 +1,16 @@
 # Changelog for Cat Facts Bot for Discord (newest on top)
 
+## Version 0.6.5 - New Feature Release - 7/20/2018
+
+### New Features
+
+- Use the `c!breedplz` command to get information about a random cat breed.
+- use the `c!faq` command to get a private message with the interactive FAQ interface
+
+### 0.6.5 Tweaks
+
+- Recognized an issue with the bot timing out after 12 hours of inactivity. Fixed with code to keep WebSocket connection alive by sending a heartbeat every so often.
+
 ## Version 0.6.0 - First major update to Alpha version - 7/15/2018
 
 ### Tweaks

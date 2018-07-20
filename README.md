@@ -4,7 +4,7 @@
 
 ### Built on Discord.py for delivering on demand cat facts in Discord
 
-### v0.6.0 - Released 7/15/2018
+### v0.6.5 - Released 7/21/2018
 
 ## What it does
 
@@ -23,7 +23,9 @@
 ### Commands
 
 - `c!help` or `c!helpplz` - call for help!
+- `c!breedplz` - get information on a random cat breed!
 - `c!factplz <option>` - get a random fact! {options below}
-  - `jpg` - deliver an image along with your cat!
+  - `jpg` - deliver an image along with your fact!
   - `gif` - deliver a GIF along with your fact!
+- `c!faq` - start a private message with the bot to go over the interactive FAQ interface!
 - `c!devhelp` - DM's the dev (you set the user ID in cat_bot_core.py in the constant `DEV_ID`). Also stores the time, server/channel origin of request, and user comment in a LOG file. User IDs and names are never stored, as per Discord's privacy policy.
