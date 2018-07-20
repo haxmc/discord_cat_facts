@@ -5,15 +5,16 @@
 ### New Features
 
 - Use the `c!breedplz` command to get information about a random cat breed.
-- use the `c!faq` command to get a private message with the interactive FAQ interface
 
 ### 0.6.5 Tweaks
 
 - Recognized an issue with the bot timing out after 12 hours of inactivity. Fixed with code to keep WebSocket connection alive by sending a heartbeat every so often.
+- merged the functionality of the `c!faq` feature (Issue #3) into the `c!help` command with resolution of Issue #8.
+- removed `c!helpplz` command, due to redundancy
 
 ## Version 0.6.0 - First major update to Alpha version - 7/15/2018
 
-### Tweaks
+### 0.6.0 Tweaks
 
 - Improved user comment logging, expands on original logging interface by storing user comments in a log file for the bot dev to look over, as well as sending a DM to the dev with each comment.
 - Improved bot status logging, creates more entries for more events, included calls to the bot (what the call, and the status code), comments logged, etc.

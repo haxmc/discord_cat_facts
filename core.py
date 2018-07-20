@@ -12,7 +12,7 @@
       #      Built on Discord.py for delivering      #
       #        on demand cat facts in Discord        #
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-      #   ~*~*~ v0.6.5 - Released 7/21/2018 ~*~*~    #
+      #   ~*~*~ v0.6.5 - Released 7/20/2018 ~*~*~    #
       ################################################
 
 # importing Python modules
@@ -44,11 +44,11 @@ async def on_message(message):
         return
     
     # user command 1
-    if message.content.startswith('c!help') or message.content.startswith('c!helpplz'):
-        msg = utilities.help_command(ts)
+    if message.content.startswith('c!help'):
+        msg = utilities.help_command(ts, message)
 
         # sends to channel where original message was posted
-        await client.send_message(message.channel, msg)
+        await client.send_message(message.author, msg)
 
     # user command 2 - breed information
     if message.content.startswith('c!breedplz'):
