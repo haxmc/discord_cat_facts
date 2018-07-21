@@ -12,7 +12,7 @@
       #      Built on Discord.py for delivering      #
       #        on demand cat facts in Discord        #
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-      #   ~*~*~ v0.6.5 - Released 7/20/2018 ~*~*~    #
+      #   ~*~*~ v0.6.6 - Released 7/21/2018 ~*~*~    #
       ################################################
 
 # importing Python modules

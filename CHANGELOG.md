@@ -1,5 +1,13 @@
 # Changelog for Cat Facts Bot for Discord (newest on top)
 
+## Version 0.6.6 - Minor Feature Update - 7/21/2018
+
+### 0.6.6 Tweaks
+
+- Added functionality to `c!breedplz` command
+    - User has ability to view all cat breeds using the `all` parameter
+    - User has the ability to view a specific cat breed by specifying the breed name as a parameter to the command.
+
 ## Version 0.6.5 - New Feature Release - 7/20/2018
 
 ### New Features

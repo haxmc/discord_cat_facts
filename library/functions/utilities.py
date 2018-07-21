@@ -4,11 +4,13 @@ def help_command(timestamp, message):
     eventlog = open('library/bin/logfiles/bot_logfile.log', 'a') # open status log file for writing
     # long, complicated help message, modify if you add more commands
     msg = 'Hello! Here\'s all the commands you can use with me in ' + message.server.name + '.\n\n'
-    msg = msg + '1] `c!help`: Gives you this menu!\n\n'
+    msg = msg + '1] `c!help`: Gives you this menu!\n'
     msg = msg + '2] `c!breedplz`: Fetches information about a random cat breed!\n'
+    msg = msg + '\t\t `all` - option will list out all of the breeds currently recognized that you could get information on.\n'
+    msg = msg + '\t\t `{breed name}` - option will list information on the specific breed you listed. Or, if no exact match is found, lists breeds close to your search parameter from which you may choose.\n'
     msg = msg + '3] `c!factplz <code>`: Fetches a cat fact along with some form of digital media:\n'
     msg = msg + '\t\t `jpg`: gives a .jpg image of a kitty. {This is the default with no selection code}\n'
-    msg = msg + '\t\t `gif`: gives a .gif of a kitty\n\n'
+    msg = msg + '\t\t `gif`: gives a .gif of a kitty\n'
     msg = msg + '4] `c!devhelp <your comment>`: Gets the attention of the dev who moderates me! I\'ll send them your username and comment, and they\'ll DM you when they can! *Don\'t worry, I never store user information without permission!*\n'
 
     logentry = str(timestamp) + ' :: User asked for help, received all commands for cat bot.\n'
