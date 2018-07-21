@@ -29,10 +29,10 @@ import library.functions.utilities as utilities # importing custom module that h
 # global variables and constants
 client = discord.Client() # object instance of class Client
 # discord Bot User Token (https://discordapp.com/developers, under 'My Apps')
-TOKEN = 'NDY3MDk2NzIyMDk1NjAzNzQ0.DjOGvg.t-1PCW-yk2xsYuhjFt7A21XW2No' # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
+TOKEN = BOT_USER_TOKEN # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
 
 #whoever you want as your POC for bot related inquiries - must use the string of numbers that are the user ID, usernames will not work here
-DEV_ID = '423984093932421120' # as string, 16 characters long, typically
+DEV_ID = DISCORD_CLIENT_ID # as string, 16 characters long, typically
 
 # functions on client events
 @client.event # decorator, triggered on any message the bot sees - listens for particular user commands
