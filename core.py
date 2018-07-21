@@ -29,10 +29,10 @@ import library.functions.utilities as utilities # importing custom module that h
 # global variables and constants
 client = discord.Client() # object instance of class Client
 # discord Bot User Token (https://discordapp.com/developers, under 'My Apps')
-TOKEN = BOT_USER_TOKEN # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
+TOKEN = 'NDY3MDk2NzIyMDk1NjAzNzQ0.DjOGvg.t-1PCW-yk2xsYuhjFt7A21XW2No' # Bot User Token for Cat Facts Beta Tester, remove before uploading to github
 
 #whoever you want as your POC for bot related inquiries - must use the string of numbers that are the user ID, usernames will not work here
-DEV_ID = DISCORD_USER_ID # as string, 16 characters long, typically
+DEV_ID = '423984093932421120' # as string, 16 characters long, typically
 
 # functions on client events
 @client.event # decorator, triggered on any message the bot sees - listens for particular user commands
@@ -47,42 +47,72 @@ async def on_message(message):
     if message.content.startswith('c!help'):
         msg = utilities.help_command(ts, message)
 
-        # sends to channel where original message was posted
+        # sends to message author only
         await client.send_message(message.author, msg)
 
     # user command 2 - breed information
     if message.content.startswith('c!breedplz'):
-        breed_msg, end_msg = utilities.breed_info_fetch(ts, message) # expects a formatted string with the breed information
 
-        # sends to channel where original message was posted
-        await client.send_message(message.channel, breed_msg)
+        command_param = message.content.lstrip('c!breedplz ')
 
-        await client.send_message(message.channel, end_msg)
+        if command_param == '':
+            # act as normal
+            breed_msg, end_msg = utilities.r_breed_info_fetch(ts, message) # expects a formatted string with the breed information
+
+            # sends to channel where original message was posted
+            await client.send_message(message.channel, breed_msg)
+
+            await client.send_message(message.channel, end_msg)
+        elif command_param == 'all':
+            # pull all breeds in a formatted list
+            breed_msg, end_msg = utilities.a_breed_info_fetch(ts, message) # expects a formatted string with all breed names
+
+            # sends to message author only
+            await client.send_message(message.author, breed_msg)
+
+            await client.send_message(message.author, end_msg)
+
+        elif len(command_param) > 0 and command_param != 'all':
+            # pull all breeds that match this particular search parameter
+            breed_msg, end_msg = utilities.s_breed_info_fetch(ts, message, command_param)
+
+            # sends to channel where original message was posted
+            await client.send_message(message.channel, breed_msg)
+
+            await client.send_message(message.channel, end_msg)
 
 
-    # user command 3a - fact with JPEG
-    if message.content.startswith('c!factplz jpg'):
-        msg, cat_jpg, end_msg = utilities.fact_jpg_fetch(ts, message)
+    if message.content.startswith('c!factplz'):
+        command_param = message.content.lstrip('c!factplz ')
+        # user command 3a - fact with JPEG
+        if command_param == 'jpg':
+            msg, cat_jpg, end_msg = utilities.fact_jpg_fetch(ts, message)
 
-        # sends to channel where original message was posted
-        await client.send_file(message.channel, cat_jpg, filename=cat_jpg, content=msg, tts=False)
+            # sends to channel where original message was posted
+            await client.send_file(message.channel, cat_jpg, filename=cat_jpg, content=msg, tts=False)
 
-        # sends to channel where original message was posted
-        await client.send_message(message.channel, end_msg)
+            # sends to channel where original message was posted
+            await client.send_message(message.channel, end_msg)
 
-        os.remove(cat_jpg) # removes file once it's posted, for keeping server hard drive clear
+            os.remove(cat_jpg) # removes file once it's posted, for keeping server hard drive clear
 
-    # user command 3b - fact with GIF
-    if message.content.startswith('c!factplz gif'):
-        msg, cat_gif, end_msg = utilities.fact_gif_fetch(ts, message)
+        # user command 3b - fact with GIF
+        elif command_param == 'gif':
+            msg, cat_gif, end_msg = utilities.fact_gif_fetch(ts, message)
 
-        # sends to channel where original message was posted
-        await client.send_file(message.channel, cat_gif, filename=cat_gif, content=msg, tts=False)
+            # sends to channel where original message was posted
+            await client.send_file(message.channel, cat_gif, filename=cat_gif, content=msg, tts=False)
 
-        # sends to channel where original message was posted
-        await client.send_message(message.channel, end_msg)
+            # sends to channel where original message was posted
+            await client.send_message(message.channel, end_msg)
 
-        os.remove(cat_gif) # removes file once it's posted, for keeping server hard drive clear
+            os.remove(cat_gif) # removes file once it's posted, for keeping server hard drive clear
+        else:
+            msg = "I didn't recognize the command you gave me."
+            end_msg = "Please reissue the command with either `jpg` or `gif` as a parameter."
+
+            await client.send_message(message.channel, msg)
+            await client.send_message(message.channel, end_msg)
 
     # user command 4 - let dev know something is wrong
     if message.content.startswith('c!devhelp'):

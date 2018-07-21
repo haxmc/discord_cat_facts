@@ -28,7 +28,7 @@
 - `c!help` - call for help! I will send you a private message with all of my functionality.
 - `c!breedplz <option>` - get information on a random cat breed!
   - `all` - option will list out all of the breeds currently recognized that you could get information on.
-  - `{breed name}` - option will list information on the specific breed you listed. Or, if no exact match is found, lists breeds close to your search parameter from which you may choose.
+  - `{breed name}` - option will list information on the specific breed you listed, if a match is found.
 - `c!factplz <option>` - get a random fact! {options below}
   - `jpg` - deliver an image along with your fact!
   - `gif` - deliver a GIF along with your fact!

@@ -7,6 +7,8 @@
 - Added functionality to `c!breedplz` command
     - User has ability to view all cat breeds using the `all` parameter
     - User has the ability to view a specific cat breed by specifying the breed name as a parameter to the command.
+- Fixed a major bug in the original `c!breedplz` command, where only one quarter of the data was accessible to pull from, and so users only got breeds 1-26 from a list of 98
+- Fixed a minor QoL bug for command `c!factplz`: now if no parameter is given, the bot will tell you to give one, and list the possible parameters.
 
 ## Version 0.6.5 - New Feature Release - 7/20/2018
 

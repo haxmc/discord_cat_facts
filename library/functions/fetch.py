@@ -1,8 +1,6 @@
 import discord # discord.py
 import requests # to pull information with APIs
 
-import random
-
 # Utility functions for bot
 def cat_fact_grabber():
     # API for grabbing a fantastic fact about our favorite felines
@@ -12,16 +10,72 @@ def cat_fact_grabber():
 
     return resp_data["fact"], cat_fact_resp.status_code # pulls the string key from the value "fact"
 
-def cat_breed_grabber():
+def r_cat_breed_grabber():
     # API for grabbing an array of information about a particular cat breed
 
     cat_breed_resp = requests.get('https://catfact.ninja/breeds')
     
     resp_data = cat_breed_resp.json()
 
-    breed_num = random.randint(0, len(resp_data))
+    breed_info = []
 
-    return resp_data["data"][breed_num], cat_breed_resp.status_code # returns a dictionary with the breed information, and the status code
+    while int(resp_data["current_page"]) <= int(resp_data["last_page"]):
+        num = 0
+        while num < len(resp_data["data"]):
+            breed_info.append(resp_data["data"][num])
+            num += 1
+
+        if resp_data["next_page_url"] == None:
+            break
+        else:
+            cat_breed_resp = requests.get(resp_data["next_page_url"])
+            resp_data = cat_breed_resp.json()
+
+    return breed_info, cat_breed_resp.status_code # returns a dictionary with the breed information, and the status code
+
+def a_cat_breed_grabber():
+    cat_breed_resp = requests.get('https://catfact.ninja/breeds')
+
+    resp_data = cat_breed_resp.json() 
+
+    breed_list = []
+
+    while int(resp_data["current_page"]) <= int(resp_data["last_page"]):
+        num = 0
+        while num < len(resp_data["data"]):
+            breed_list.append(resp_data["data"][num]["breed"])
+            num += 1
+
+        if resp_data["next_page_url"] == None:
+            break
+        else:
+            cat_breed_resp = requests.get(resp_data["next_page_url"])
+            resp_data = cat_breed_resp.json()
+
+    return breed_list, cat_breed_resp.status_code # returns a list of all breed names, and the status code
+
+def s_cat_breed_grabber():
+    cat_breed_resp = requests.get('https://catfact.ninja/breeds')
+
+    resp_data = cat_breed_resp.json() 
+
+    breed_list = []
+    breed_info = []
+
+    while int(resp_data["current_page"]) <= int(resp_data["last_page"]):
+        num = 0
+        while num < len(resp_data["data"]):
+            breed_list.append(resp_data["data"][num]["breed"])
+            breed_info.append(resp_data["data"][num])
+            num += 1
+
+        if resp_data["next_page_url"] == None:
+            break
+        else:
+            cat_breed_resp = requests.get(resp_data["next_page_url"])
+            resp_data = cat_breed_resp.json()
+
+    return breed_list, breed_info, cat_breed_resp.status_code # returns a list of all breed names, and the status code
 
 def cat_jpg_grabber():
     # API for featuring a fabulous photo full of frisky fellows
