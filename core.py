@@ -14,6 +14,21 @@
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
       #   ~*~*~ v0.6.6 - Released 7/21/2018 ~*~*~    #
       ################################################
+      
+      ##################################################
+      #          BE ADVISED: This bot is moving        #
+      #       As of August 1, 2018, this bot and its   #
+      #      features will be merged with a new bot    #
+      # (https://github.com/de-taylor/fact-of-the-day) #
+      #  All of its functionality will remain the same #
+      #  but with an updated command structure and new # 
+      #      additions for other categories of facts.  #
+      # Please be advised, if you have this bot on your#
+      # server in its current capacity that it will not# 
+      # be live again until August 1, 2018. Please keep# 
+      #  in touch with the new repository for further  #
+      #                  information.                  #
+      ##################################################
 
 # importing Python modules
 import discord # discord.py, to communicate with Discord
