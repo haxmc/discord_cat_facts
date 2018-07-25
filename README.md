@@ -4,9 +4,9 @@
 
 ### Built on Discord.py for delivering on demand cat facts in Discord
 
-### v0.6.6 - Released 7/21/2018
+## Note: This bot is being merged with another!
 
-
+As of August 1, 2018, this bot and its features will be merged with a new bot (https://github.com/de-taylor/fact-of-the-day). All of its functionality will remain the same, but with an updated command structure and new additions for other categories of facts. Please be advised, if you have this bot on your server in its current capacity, that it will not be live again until August 1, 2018. Please keep in touch with the fact-of-the-day repository for further information.
 
 ## What it does
 
