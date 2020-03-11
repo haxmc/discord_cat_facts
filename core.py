@@ -155,4 +155,4 @@ async def on_ready(): # need to log different things on on_ready() error
 
     logfile.close()
 
-client.run(TOKEN)
+client.run(Njg3MTgzMjg3MTAxNDIzNjM1.XmiDfw.C62Nvu4o0Bkjvk_J1GCVZ5ldT8E)
